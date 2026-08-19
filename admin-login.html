@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Choppa School Administration Login — secure access for authorised principal and teaching staff." />
+<title>School Administration Login — Choppa School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" />
+<style>
+/* ============ Design Tokens ============ */
+:root{
+  --brand-deep:#0c3b32;
+  --brand:#146353;
+  --brand-light:#1d8472;
+  --brand-tint:#e7efe9;
+  --gold:#b8893f;
+  --gold-soft:#e3c98c;
+  --gold-tint:#f6ecd4;
+  --cream:#faf6ee;
+  --cream-warm:#f2ead7;
+  --paper:#fffdf7;
+  --ink:#161616;
+  --ink-2:#3d3d3d;
+  --ink-3:#6b6b6b;
+  --ink-4:#9a9a9a;
+  --line:#e3d9c0;
+  --line-soft:#efe7d3;
+  --white:#ffffff;
+  --danger:#b42318;
+  --radius-sm:6px;
+  --radius:10px;
+  --radius-lg:18px;
+  --radius-xl:28px;
+  --shadow-sm:0 1px 2px rgba(12,59,50,.05),0 1px 1px rgba(12,59,50,.04);
+  --shadow:0 4px 16px -2px rgba(12,59,50,.08),0 2px 6px -2px rgba(12,59,50,.06);
+  --shadow-lg:0 24px 60px -16px rgba(12,59,50,.2),0 10px 24px -10px rgba(12,59,50,.1);
+  --transition:240ms cubic-bezier(.2,.7,.3,1);
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Inter",system-ui,-apple-system,sans-serif;
+  --maxw:1240px;
+}
+
+/* ============ Base ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle at 20% 10%,rgba(184,137,63,.04),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(20,99,83,.04),transparent 40%);
+}
+
+/* ============ Layout helpers ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.section{padding:84px 0;position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+
+/* ============ Icons ============ */
+.icon{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:16px;height:16px}
+.icon-md{width:20px;height:20px}
+.icon-lg{width:28px;height:28px}
+
+/* ============ Top bar ============ */
+.topbar{
+  background:var(--brand-deep);color:rgba(255,253,247,.85);
+  font-size:13px;border-bottom:1px solid rgba(255,253,247,.08);
+}
+.topbar-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;gap:24px;flex-wrap:wrap;
+}
+.topbar-left{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.topbar-item{display:inline-flex;align-items:center;gap:7px;color:rgba(255,253,247,.8)}
+.topbar-item:hover{color:#fff}
+.topbar-right{display:flex;gap:14px;align-items:center}
+.social-row{display:flex;gap:8px}
+.social-link{
+  width:28px;height:28px;display:inline-grid;place-items:center;
+  border-radius:50%;border:1px solid rgba(255,253,247,.18);
+  color:rgba(255,253,247,.8);transition:all var(--transition);
+}
+.social-link:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px)}
+
+/* ============ Header / Nav ============ */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,246,238,.92);
+  backdrop-filter:saturate(140%) blur(12px);
+  -webkit-backdrop-filter:saturate(140%) blur(12px);
+  border-bottom:1px solid var(--line-soft);
+  transition:box-shadow var(--transition),background var(--transition);
+}
+.header.scrolled{box-shadow:0 6px 24px -10px rgba(12,59,50,.18)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:46px;height:46px;border-radius:50%;
+  overflow:hidden;border:2px solid var(--gold);
+  background:var(--cream-warm);flex-shrink:0;
+  box-shadow:0 2px 8px rgba(12,59,50,.12);
+}
+.brand-mark img{width:100%;height:100%;object-fit:cover}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
+.brand-tag{font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--brand)}
+
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{
+  position:relative;padding:10px 14px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--ink-2);
+  transition:color var(--transition),background var(--transition);
+}
+.nav-link:hover{color:var(--brand-deep);background:var(--brand-tint)}
+.nav-link.active{color:var(--brand-deep);font-weight:600}
+.nav-link.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:4px;
+  height:2px;background:var(--gold);border-radius:2px;
+}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;
+  transition:all var(--transition);white-space:nowrap;border:1px solid transparent;
+}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(20,99,83,.2)}
+.btn-primary:hover{background:var(--brand-deep);transform:translateY(-1px);box-shadow:0 6px 16px rgba(12,59,50,.25)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-tint)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#a37a30;transform:translateY(-1px)}
+.btn-outline-gold{border:1px solid var(--gold);color:var(--brand-deep);background:transparent}
+.btn-outline-gold:hover{background:var(--gold);color:#fff}
+.btn-lg{padding:14px 28px;font-size:15px}
+.btn-block{width:100%}
+
+.menu-toggle{
+  display:none;width:42px;height:42px;border-radius:8px;
+  border:1px solid var(--line);align-items:center;justify-content:center;
+}
+.menu-toggle .icon{width:22px;height:22px;color:var(--ink)}
+.menu-toggle .icon-close{display:none}
+.menu-toggle[aria-expanded="true"] .icon-menu{display:none}
+.menu-toggle[aria-expanded="true"] .icon-close{display:block}
+
+/* Mobile Drawer Overlay */
+.nav-overlay {
+  position: fixed; inset: 0; background: rgba(12,59,50,0.5);
+  z-index: 99; opacity: 0; pointer-events: none;
+  transition: opacity 320ms ease;
+  display: none;
+}
+
+/* ============ Page Hero ============ */
+.page-hero {
+  padding: 72px 0 56px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(800px 400px at 90% -20%, var(--gold-tint), transparent 60%);
+}
+.page-hero .wrap { position: relative; z-index: 1; }
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.page-lead {
+  font-size: 17px;
+  color: var(--ink-2);
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+/* ============ Auth Section ============ */
+.section-auth {
+  padding: 64px 0 96px;
+  position: relative;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  display: flex;
+  justify-content: center;
+}
+.auth-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 48px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  overflow: hidden;
+}
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--brand));
+}
+.auth-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 24px;
+  border: 1px solid var(--brand-light);
+}
+.auth-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: -.01em;
+}
+.auth-sub {
+  font-size: 14px;
+  color: var(--ink-3);
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+.input-group {
+  position: relative;
+}
+.input-group .icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+.form-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  transition: all var(--transition);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--brand);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px rgba(20, 99, 83, 0.1);
+}
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.checkbox-wrap input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--brand);
+  cursor: pointer;
+}
+.forgot-link {
+  color: var(--brand);
+  font-weight: 600;
+}
+.forgot-link:hover {
+  color: var(--brand-deep);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+  color: var(--ink-4);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.auth-divider::before, .auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.auth-note {
+  background: var(--cream-warm);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  text-align: center;
+  line-height: 1.5;
+}
+.auth-note strong {
+  color: var(--ink-2);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ============ Footer ============ */
+.footer{background:#0a2a23;color:rgba(255,253,247,.75);padding:64px 0 0;margin-top:0;position:relative}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,253,247,.08)}
+.footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.footer-mark{width:50px;height:50px;border-radius:50%;overflow:hidden;border:2px solid var(--gold-soft)}
+.footer-mark img{width:100%;height:100%;object-fit:cover}
+.footer-name{font-family:var(--font-display);font-weight:700;font-size:22px;color:#fff}
+.footer-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+.footer-about{font-size:13.5px;line-height:1.7;max-width:340px;margin-bottom:20px}
+.footer-social{display:flex;gap:8px}
+.footer-social .social-link{border-color:rgba(255,253,247,.15);color:rgba(255,253,247,.7)}
+.footer-col h4{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.footer-col ul{display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:14px;color:rgba(255,253,247,.7);transition:color var(--transition),padding var(--transition)}
+.footer-col a:hover{color:var(--gold-soft);padding-left:4px}
+.footer-contact-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;font-size:13.5px;line-height:1.5}
+.footer-contact-item .icon{color:var(--gold-soft);margin-top:3px}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 0;gap:18px;flex-wrap:wrap;
+}
+.footer-bottom p{font-size:13px;color:rgba(255,253,247,.55)}
+.dev-credit{
+  font-size:13px;color:rgba(255,253,247,.55);
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:8px;
+  border:1px solid rgba(255,253,247,.1);
+  transition:all var(--transition);cursor:pointer;
+}
+.dev-credit:hover{color:#fff;border-color:var(--gold-soft);background:rgba(184,137,63,.1)}
+.dev-credit strong{color:var(--gold-soft);font-weight:600}
+
+/* ============ Toast ============ */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:14px 22px;border-radius:12px;
+  font-size:14px;box-shadow:var(--shadow-lg);z-index:1000;
+  opacity:0;pointer-events:none;transition:all var(--transition);
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .icon{color:var(--gold-soft)}
+
+/* ============ Back to top ============ */
+.to-top{
+  position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:50%;
+  background:var(--brand);color:#fff;display:grid;place-items:center;
+  box-shadow:var(--shadow-lg);z-index:50;opacity:0;pointer-events:none;
+  transition:all var(--transition);border:1px solid var(--brand-light);
+}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--brand-deep);transform:translateY(-3px)}
+
+/* ============ Reveal animation ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 700ms ease,transform 700ms ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ Responsive ============ */
+@media (max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media (max-width:768px){
+  .section{padding:60px 0}
+  .nav-overlay { display: block; }
+  .nav-overlay.open { opacity: 1; pointer-events: auto; }
+  
+  .nav-links{
+    position:fixed;top:0;left:0;bottom:0;width:280px;background:var(--paper);
+    flex-direction:column;align-items:stretch;gap:4px;padding:80px 24px 40px;
+    border-right:1px solid var(--line);box-shadow:var(--shadow-lg);
+    transform:translateX(-100%);transition:transform 320ms ease;max-height:100vh;overflow-y:auto;z-index:105;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-link{padding:14px 12px;border-radius:8px;font-size:15px}
+  .nav-link.active::after{display:none}
+  .nav-link.active{background:var(--brand-tint)}
+  .menu-toggle{display:inline-flex}
+  .nav-actions .btn-admin-text{display:none}
+  .nav-actions .btn-admin{padding:11px 14px}
+  .topbar-right{display:none}
+  .topbar-left{justify-content:center;width:100%}
+  .footer-grid{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
+}
+@media (max-width:480px){
+  .wrap{padding:0 18px}
+  .auth-card{padding:32px 24px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SVG Icon Sprite ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3z"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-twitter" viewBox="0 0 24 24"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.7.4-1.6.8-2.5 1a4 4 0 0 0-6.8 3.6A11 11 0 0 1 4 4.5a4 4 0 0 0 1.2 5.3c-.6 0-1.2-.2-1.8-.5v.1a4 4 0 0 0 3.2 3.9c-.6.2-1.2.2-1.8.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.1 1.8c7.3 0 11.4-6.1 11.4-11.4v-.5c.8-.6 1.4-1.3 2-2.1z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></symbol>
+</defs>
+</svg>
+
+<!-- ============ Top bar ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:+27115550142" class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-phone"/></svg>
+          <span>+27 11 555 0142</span>
+        </a>
+        <a href="mailto:info@choppaschool.edu" class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-mail"/></svg>
+          <span>info@choppaschool.edu</span>
+        </a>
+        <span class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-clock"/></svg>
+          <span>Mon–Fri, 07:30 – 15:30</span>
+        </span>
+      </div>
+      <div class="topbar-right">
+        <div class="social-row">
+          <a href="#" class="social-link" aria-label="Facebook"><svg class="icon icon-sm"><use href="#i-facebook"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg class="icon icon-sm"><use href="#i-instagram"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg class="icon icon-sm"><use href="#i-twitter"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg class="icon icon-sm"><use href="#i-youtube"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Header ============ -->
+<header class="header" id="header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="brand" aria-label="Choppa School home">
+        <span class="brand-mark">
+          <img src="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" alt="Choppa School crest" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Choppa School</span>
+          <span class="brand-tag">Excellence • Integrity • Service</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li><a href="achievements.html" class="nav-link">Achievements</a></li>
+        <li><a href="sports.html" class="nav-link">Sports</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About the School</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-overlay" id="navOverlay"></div>
+
+      <div class="nav-actions">
+        <a href="admin-login.html" class="btn btn-outline-gold btn-admin" aria-label="School Administration login">
+          <svg class="icon icon-sm"><use href="#i-shield"/></svg>
+          <span class="btn-admin-text">School Administration</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+          <svg class="icon icon-menu"><use href="#i-menu"/></svg>
+          <svg class="icon icon-close"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ Page Hero ============ -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Restricted Access</span>
+    <h1 class="page-title">School Administration</h1>
+    <p class="page-lead">
+      This is a secure area intended only for the Principal and authorised teaching staff. Please log in using your official school credentials.
+    </p>
+  </div>
+</section>
+
+<!-- ============ Auth Section ============ -->
+<section class="section-auth">
+  <div class="wrap" style="display:flex;justify-content:center">
+    <div class="auth-card reveal">
+      <div class="auth-icon">
+        <svg class="icon icon-lg"><use href="#i-lock"/></svg>
+      </div>
+      <h2 class="auth-title">Authorised Login</h2>
+      <p class="auth-sub">Enter your email and password to access the dashboard.</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div class="input-group">
+            <svg class="icon icon-md"><use href="#i-mail"/></svg>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="principal@choppaschool.edu" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <svg class="icon icon-md"><use href="#i-lock"/></svg>
+            <input type="password" id="password" name="password" class="form-input" required placeholder="Enter your password" />
+          </div>
+        </div>
+        
+        <div class="auth-options">
+          <label class="checkbox-wrap">
+            <input type="checkbox" name="remember" />
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-link" id="forgotLink">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginBtn">
+          Secure Login
+          <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+        </button>
+      </form>
+
+      <div class="auth-divider">Security Notice</div>
+
+      <div class="auth-note">
+        <strong>Authorised Personnel Only</strong>
+        Unauthorised access attempts are logged and monitored. If you do not have administrative credentials, please return to the <a href="index.html" style="color:var(--brand);font-weight:600;text-decoration:underline">public website</a>.
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-mark">
+            <img src="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" alt="Choppa School crest" />
+          </span>
+          <div>
+            <div class="footer-name">Choppa School</div>
+            <div class="footer-tag">Est. 1978</div>
+          </div>
+        </div>
+        <p class="footer-about">
+          A public secondary school in Riverside, Gauteng, committed to academic excellence, character formation and service to community. Proudly serving learners from Grade 8 to Grade 12.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook"><svg class="icon icon-sm"><use href="#i-facebook"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg class="icon icon-sm"><use href="#i-instagram"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg class="icon icon-sm"><use href="#i-twitter"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg class="icon icon-sm"><use href="#i-youtube"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="announcements.html">Announcements</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="sports.html">Sports</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The School</h4>
+        <ul>
+          <li><a href="about.html">About the School</a></li>
+          <li><a href="about.html#vision">Vision &amp; Mission</a></li>
+          <li><a href="about.html#values">School Values</a></li>
+          <li><a href="about.html#academic">Academic Information</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-pin"/></svg>
+          <span>14 Acacia Avenue, Riverside,<br />Gauteng, 2194, South Africa</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-phone"/></svg>
+          <span>+27 11 555 0142<br />+27 11 555 0143</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-mail"/></svg>
+          <span>info@choppaschool.edu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2025</span> Choppa School. All rights reserved.</p>
+      <a href="https://websolutionsza.github.io/websolutionsSA" target="_blank" rel="noopener noreferrer" class="dev-credit" id="devCredit">
+        Developed by <strong>WebSolutionsSA</strong>
+        <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ Back to top ============ -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg class="icon icon-md"><use href="#i-arrow-up"/></svg>
+</button>
+
+<!-- ============ Toast ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg class="icon icon-sm"><use href="#i-check"/></svg>
+  <span id="toastMsg">Login successful.</span>
+</div>
+
+<script>
+/* ============================================================
+   CHOPPA SCHOOL — Admin Login Page
+   ============================================================ */
+
+/* ---------- Supabase config placeholder ----------
+   Replace these placeholders with real values when integrating.
+   Only the public anon key may be used in the browser.
+   Never expose the service-role key in frontend code.
+--------------------------------------------------- */
+const SUPABASE_CONFIG = {
+  url: "SUPABASE_URL",          // e.g. "https://xyzcompany.supabase.co"
+  anonKey: "SUPABASE_ANON_KEY", // public anon key only
+};
+
+/* Optional Supabase client init — to be activated when credentials are added
+if (window.supabase && SUPABASE_CONFIG.url !== "SUPABASE_URL") {
+  window.sb = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+}
+*/
+
+/* ---------- Reveal-on-scroll ---------- */
+let io;
+function observeReveals(){
+  if(!("IntersectionObserver" in window)){
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+    return;
+  }
+  if(!io){
+    io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },{ threshold:.12, rootMargin:"0px 0px -60px 0px" });
+  }
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+}
+
+/* ---------- Header scroll state ---------- */
+function initHeader(){
+  const header = document.getElementById("header");
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+    document.getElementById("toTop").classList.toggle("show", window.scrollY > 500);
+  };
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+}
+
+/* ---------- Mobile menu ---------- */
+function initMobileMenu(){
+  const btn = document.getElementById("menuToggle");
+  const links = document.getElementById("navLinks");
+  const overlay = document.getElementById("navOverlay");
+  if(!btn || !links) return;
+  
+  const toggleMenu = (open) => {
+    links.classList.toggle("open", open);
+    if(overlay) overlay.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  btn.addEventListener("click", ()=> toggleMenu(!links.classList.contains("open")));
+  
+  if(overlay) overlay.addEventListener("click", ()=> toggleMenu(false));
+
+  links.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", ()=> toggleMenu(false));
+  });
+}
+
+/* ---------- Back to top ---------- */
+function initToTop(){
+  const btn = document.getElementById("toTop");
+  if(!btn) return;
+  btn.addEventListener("click", ()=> window.scrollTo({ top:0, behavior:"smooth" }));
+}
+
+/* ---------- Toast ---------- */
+let toastTimer;
+function showToast(msg){
+  const toast = document.getElementById("toast");
+  const msgEl = document.getElementById("toastMsg");
+  if(!toast || !msgEl) return;
+  msgEl.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove("show"), 3000);
+}
+
+/* ---------- Form Login (Prototype) ---------- */
+function initLogin(){
+  const form = document.getElementById("loginForm");
+  const btn = document.getElementById("loginBtn");
+  const forgotLink = document.getElementById("forgotLink");
+  
+  if(!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.innerHTML = "Authenticating...";
+    
+    // Simulate network request for prototype
+    setTimeout(() => {
+      // In a real scenario, this would route through Supabase Auth
+      // If successful, redirect to admin.html
+      // If failed, show error toast
+      
+      showToast("Login successful. Redirecting to dashboard...");
+      
+      setTimeout(() => {
+        window.location.href = "admin.html";
+      }, 1200);
+      
+      // Reset button (though redirect should happen)
+      btn.disabled = false;
+      btn.innerHTML = 'Secure Login <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>';
+    }, 1000);
+  });
+
+  if(forgotLink){
+    forgotLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showToast("Password reset link sent to your email.");
+    });
+  }
+}
+
+/* ---------- Dev credit ---------- */
+function initDevCredit(){
+  const link = document.getElementById("devCredit");
+  if(!link) return;
+  link.addEventListener("click", ()=>{
+    showToast("Opening WebSolutionsSA in a new tab");
+  });
+}
+
+/* ---------- Init ---------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("year").textContent = new Date().getFullYear();
+  initHeader();
+  initMobileMenu();
+  initToTop();
+  initLogin();
+  initDevCredit();
+  observeReveals();
+});
+</script>
+</body>
+</html>

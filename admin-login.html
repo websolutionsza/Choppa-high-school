@@ -697,7 +697,7 @@ body::before{
   <svg class="icon icon-sm"><use href="#i-check"/></svg>
   <span id="toastMsg">Login successful.</span>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============================================================
    CHOPPA SCHOOL — Admin Login Page
@@ -709,8 +709,8 @@ body::before{
    Never expose the service-role key in frontend code.
 --------------------------------------------------- */
 const SUPABASE_CONFIG = {
-  url: "SUPABASE_URL",          // e.g. "https://xyzcompany.supabase.co"
-  anonKey: "SUPABASE_ANON_KEY", // public anon key only
+  url: "https://pjofdhccpxenexkvtemt.supabase.co",          // e.g. "https://xyzcompany.supabase.co"
+  anonKey: "sb_publishable_E6mmFc1Pk5PfvjFxK16FYw_6VagBpED", // public anon key only
 };
 
 /* Optional Supabase client init — to be activated when credentials are added
@@ -793,40 +793,117 @@ function showToast(msg){
 }
 
 /* ---------- Form Login (Prototype) ---------- */
-function initLogin(){
+async function initLogin(){
   const form = document.getElementById("loginForm");
   const btn = document.getElementById("loginBtn");
   const forgotLink = document.getElementById("forgotLink");
-  
+
   if(!form) return;
 
-  form.addEventListener("submit", (e) => {
+  // Create Supabase client
+  const sb = window.supabase.createClient(
+    SUPABASE_CONFIG.url,
+    SUPABASE_CONFIG.anonKey
+  );
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if(!email || !password){
+      showToast("Please enter your email and password.");
+      return;
+    }
+
     btn.disabled = true;
     btn.innerHTML = "Authenticating...";
-    
-    // Simulate network request for prototype
-    setTimeout(() => {
-      // In a real scenario, this would route through Supabase Auth
-      // If successful, redirect to admin.html
-      // If failed, show error toast
-      
+
+    try {
+      // Authenticate with Supabase
+      const { data: authData, error: authError } =
+        await sb.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if(authError){
+        throw new Error("Invalid email or password.");
+      }
+
+      const user = authData.user;
+
+      // Check the user's profile
+      const { data: profile, error: profileError } =
+        await sb
+          .from("profiles")
+          .select("id, full_name, role, is_active")
+          .eq("id", user.id)
+          .single();
+
+      if(profileError || !profile){
+        await sb.auth.signOut();
+        throw new Error("No authorised school profile was found.");
+      }
+
+      // Check account status
+      if(profile.is_active !== true){
+        await sb.auth.signOut();
+        throw new Error("Your school account is currently inactive.");
+      }
+
+      // Check authorised roles
+      if(profile.role !== "principal" && profile.role !== "teacher"){
+        await sb.auth.signOut();
+        throw new Error("You are not authorised to access the administration area.");
+      }
+
+      // Successful login
       showToast("Login successful. Redirecting to dashboard...");
-      
+
       setTimeout(() => {
         window.location.href = "admin.html";
-      }, 1200);
-      
-      // Reset button (though redirect should happen)
+      }, 800);
+
+    } catch(error) {
+
+      console.error("Login error:", error);
+
+      showToast(error.message || "Login failed. Please try again.");
+
       btn.disabled = false;
-      btn.innerHTML = 'Secure Login <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>';
-    }, 1000);
+      btn.innerHTML =
+        'Secure Login <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>';
+    }
   });
 
+  // Password reset
   if(forgotLink){
-    forgotLink.addEventListener("click", (e) => {
+    forgotLink.addEventListener("click", async (e) => {
       e.preventDefault();
-      showToast("Password reset link sent to your email.");
+
+      const email = document.getElementById("email").value.trim();
+
+      if(!email){
+        showToast("Enter your email address first.");
+        document.getElementById("email").focus();
+        return;
+      }
+
+      try {
+        const { error } = await sb.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/admin-login.html`
+        });
+
+        if(error) throw error;
+
+        showToast("Password reset instructions have been sent to your email.");
+
+      } catch(error) {
+        console.error("Password reset error:", error);
+        showToast("Unable to send password reset email.");
+      }
     });
   }
 }

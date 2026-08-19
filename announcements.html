@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Choppa School announcements and notices — stay up to date with the latest news, important notices, and academic updates." />
+<title>Announcements & Notices — Choppa School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" />
+<style>
+/* ============ Design Tokens ============ */
+:root{
+  --brand-deep:#0c3b32;
+  --brand:#146353;
+  --brand-light:#1d8472;
+  --brand-tint:#e7efe9;
+  --gold:#b8893f;
+  --gold-soft:#e3c98c;
+  --gold-tint:#f6ecd4;
+  --cream:#faf6ee;
+  --cream-warm:#f2ead7;
+  --paper:#fffdf7;
+  --ink:#161616;
+  --ink-2:#3d3d3d;
+  --ink-3:#6b6b6b;
+  --ink-4:#9a9a9a;
+  --line:#e3d9c0;
+  --line-soft:#efe7d3;
+  --white:#ffffff;
+  --danger:#b42318;
+  --radius-sm:6px;
+  --radius:10px;
+  --radius-lg:18px;
+  --radius-xl:28px;
+  --shadow-sm:0 1px 2px rgba(12,59,50,.05),0 1px 1px rgba(12,59,50,.04);
+  --shadow:0 4px 16px -2px rgba(12,59,50,.08),0 2px 6px -2px rgba(12,59,50,.06);
+  --shadow-lg:0 24px 60px -16px rgba(12,59,50,.2),0 10px 24px -10px rgba(12,59,50,.1);
+  --transition:240ms cubic-bezier(.2,.7,.3,1);
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Inter",system-ui,-apple-system,sans-serif;
+  --maxw:1240px;
+}
+
+/* ============ Base ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px}
+
+body::before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle at 20% 10%,rgba(184,137,63,.04),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(20,99,83,.04),transparent 40%);
+}
+
+/* ============ Layout helpers ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.section{padding:84px 0;position:relative}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.section-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--ink);max-width:640px;
+}
+.section-sub{color:var(--ink-3);font-size:15px;max-width:480px;line-height:1.6}
+.section-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--brand);
+  border-bottom:1px solid var(--gold);padding-bottom:4px;
+  transition:gap var(--transition),color var(--transition);
+}
+.section-link:hover{gap:14px;color:var(--brand-deep)}
+
+/* ============ Icons ============ */
+.icon{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:16px;height:16px}
+.icon-md{width:20px;height:20px}
+.icon-lg{width:28px;height:28px}
+
+/* ============ Top bar ============ */
+.topbar{
+  background:var(--brand-deep);color:rgba(255,253,247,.85);
+  font-size:13px;border-bottom:1px solid rgba(255,253,247,.08);
+}
+.topbar-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;gap:24px;flex-wrap:wrap;
+}
+.topbar-left{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.topbar-item{display:inline-flex;align-items:center;gap:7px;color:rgba(255,253,247,.8)}
+.topbar-item:hover{color:#fff}
+.topbar-right{display:flex;gap:14px;align-items:center}
+.social-row{display:flex;gap:8px}
+.social-link{
+  width:28px;height:28px;display:inline-grid;place-items:center;
+  border-radius:50%;border:1px solid rgba(255,253,247,.18);
+  color:rgba(255,253,247,.8);transition:all var(--transition);
+}
+.social-link:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px)}
+
+/* ============ Header / Nav ============ */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,246,238,.92);
+  backdrop-filter:saturate(140%) blur(12px);
+  -webkit-backdrop-filter:saturate(140%) blur(12px);
+  border-bottom:1px solid var(--line-soft);
+  transition:box-shadow var(--transition),background var(--transition);
+}
+.header.scrolled{box-shadow:0 6px 24px -10px rgba(12,59,50,.18)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:46px;height:46px;border-radius:50%;
+  overflow:hidden;border:2px solid var(--gold);
+  background:var(--cream-warm);flex-shrink:0;
+  box-shadow:0 2px 8px rgba(12,59,50,.12);
+}
+.brand-mark img{width:100%;height:100%;object-fit:cover}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
+.brand-tag{font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--brand)}
+
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{
+  position:relative;padding:10px 14px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--ink-2);
+  transition:color var(--transition),background var(--transition);
+}
+.nav-link:hover{color:var(--brand-deep);background:var(--brand-tint)}
+.nav-link.active{color:var(--brand-deep);font-weight:600}
+.nav-link.active::after{
+  content:"";position:absolute;left:14px;right:14px;bottom:4px;
+  height:2px;background:var(--gold);border-radius:2px;
+}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;
+  transition:all var(--transition);white-space:nowrap;border:1px solid transparent;
+}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(20,99,83,.2)}
+.btn-primary:hover{background:var(--brand-deep);transform:translateY(-1px);box-shadow:0 6px 16px rgba(12,59,50,.25)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-tint)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#a37a30;transform:translateY(-1px)}
+.btn-outline-gold{border:1px solid var(--gold);color:var(--brand-deep);background:transparent}
+.btn-outline-gold:hover{background:var(--gold);color:#fff}
+.btn-lg{padding:14px 28px;font-size:15px}
+.btn-block{width:100%}
+
+.menu-toggle{
+  display:none;width:42px;height:42px;border-radius:8px;
+  border:1px solid var(--line);align-items:center;justify-content:center;
+}
+.menu-toggle .icon{width:22px;height:22px;color:var(--ink)}
+.menu-toggle .icon-close{display:none}
+.menu-toggle[aria-expanded="true"] .icon-menu{display:none}
+.menu-toggle[aria-expanded="true"] .icon-close{display:block}
+
+/* Mobile Drawer Overlay */
+.nav-overlay {
+  position: fixed; inset: 0; background: rgba(12,59,50,0.5);
+  z-index: 99; opacity: 0; pointer-events: none;
+  transition: opacity 320ms ease;
+  display: none;
+}
+
+/* ============ Page Hero ============ */
+.page-hero {
+  padding: 72px 0 56px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(800px 400px at 90% -20%, var(--gold-tint), transparent 60%);
+}
+.page-hero .wrap { position: relative; z-index: 1; }
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.page-lead {
+  font-size: 17px;
+  color: var(--ink-2);
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+/* ============ Filters ============ */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.filter-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: var(--brand-tint);
+}
+.filter-btn.active {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+
+/* ============ Announcements Section ============ */
+.section-announcements {
+  padding: 64px 0 96px;
+  position: relative;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+}
+
+/* ============ Posts grid ============ */
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.post-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);
+}
+.post-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--gold-soft)}
+.post-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--cream-warm)}
+.post-media img{width:100%;height:100%;object-fit:cover;transition:transform 500ms ease}
+.post-card:hover .post-media img{transform:scale(1.06)}
+.post-cat{
+  position:absolute;top:14px;left:14px;
+  background:rgba(255,253,247,.95);backdrop-filter:blur(4px);
+  color:var(--brand-deep);padding:5px 11px;border-radius:999px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid var(--line);
+}
+.post-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.post-meta{display:flex;gap:14px;font-size:12px;color:var(--ink-3);margin-bottom:10px;flex-wrap:wrap}
+.post-meta-item{display:inline-flex;align-items:center;gap:5px}
+.post-title{
+  font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.25;
+  letter-spacing:-.01em;margin-bottom:10px;color:var(--ink);
+}
+.post-excerpt{font-size:14px;color:var(--ink-2);line-height:1.55;margin-bottom:18px;flex:1}
+.post-foot{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--line-soft)}
+.post-author{font-size:12px;color:var(--ink-3)}
+.post-author strong{color:var(--ink-2);font-weight:600}
+.post-more{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--brand)}
+.post-card:hover .post-more{color:var(--brand-deep);gap:10px}
+
+/* Audio player in post card */
+.post-audio{
+  margin-top:14px;padding:10px 12px;background:var(--cream-warm);
+  border:1px solid var(--line-soft);border-radius:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.post-audio-btn{
+  width:32px;height:32px;border-radius:50%;background:var(--brand);
+  display:grid;place-items:center;color:#fff;flex-shrink:0;
+}
+.post-audio-info{flex:1;font-size:11px;line-height:1.3}
+.post-audio-info strong{display:block;color:var(--ink-2);font-size:12px}
+.post-audio-info span{color:var(--ink-3)}
+
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+}
+
+/* ============ Footer ============ */
+.footer{background:#0a2a23;color:rgba(255,253,247,.75);padding:64px 0 0;margin-top:0;position:relative}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,253,247,.08)}
+.footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.footer-mark{width:50px;height:50px;border-radius:50%;overflow:hidden;border:2px solid var(--gold-soft)}
+.footer-mark img{width:100%;height:100%;object-fit:cover}
+.footer-name{font-family:var(--font-display);font-weight:700;font-size:22px;color:#fff}
+.footer-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+.footer-about{font-size:13.5px;line-height:1.7;max-width:340px;margin-bottom:20px}
+.footer-social{display:flex;gap:8px}
+.footer-social .social-link{border-color:rgba(255,253,247,.15);color:rgba(255,253,247,.7)}
+.footer-col h4{font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.footer-col ul{display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:14px;color:rgba(255,253,247,.7);transition:color var(--transition),padding var(--transition)}
+.footer-col a:hover{color:var(--gold-soft);padding-left:4px}
+.footer-contact-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;font-size:13.5px;line-height:1.5}
+.footer-contact-item .icon{color:var(--gold-soft);margin-top:3px}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 0;gap:18px;flex-wrap:wrap;
+}
+.footer-bottom p{font-size:13px;color:rgba(255,253,247,.55)}
+.dev-credit{
+  font-size:13px;color:rgba(255,253,247,.55);
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:8px;
+  border:1px solid rgba(255,253,247,.1);
+  transition:all var(--transition);cursor:pointer;
+}
+.dev-credit:hover{color:#fff;border-color:var(--gold-soft);background:rgba(184,137,63,.1)}
+.dev-credit strong{color:var(--gold-soft);font-weight:600}
+
+/* ============ Toast ============ */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:14px 22px;border-radius:12px;
+  font-size:14px;box-shadow:var(--shadow-lg);z-index:1000;
+  opacity:0;pointer-events:none;transition:all var(--transition);
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast .icon{color:var(--gold-soft)}
+
+/* ============ Back to top ============ */
+.to-top{
+  position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:50%;
+  background:var(--brand);color:#fff;display:grid;place-items:center;
+  box-shadow:var(--shadow-lg);z-index:50;opacity:0;pointer-events:none;
+  transition:all var(--transition);border:1px solid var(--brand-light);
+}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{background:var(--brand-deep);transform:translateY(-3px)}
+
+/* ============ Reveal animation ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 700ms ease,transform 700ms ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ Responsive ============ */
+@media (max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .posts-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  .section{padding:60px 0}
+  .nav-overlay { display: block; }
+  .nav-overlay.open { opacity: 1; pointer-events: auto; }
+  
+  .nav-links{
+    position:fixed;top:0;left:0;bottom:0;width:280px;background:var(--paper);
+    flex-direction:column;align-items:stretch;gap:4px;padding:80px 24px 40px;
+    border-right:1px solid var(--line);box-shadow:var(--shadow-lg);
+    transform:translateX(-100%);transition:transform 320ms ease;max-height:100vh;overflow-y:auto;z-index:105;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-link{padding:14px 12px;border-radius:8px;font-size:15px}
+  .nav-link.active::after{display:none}
+  .nav-link.active{background:var(--brand-tint)}
+  .menu-toggle{display:inline-flex}
+  .nav-actions .btn-admin-text{display:none}
+  .nav-actions .btn-admin{padding:11px 14px}
+  .topbar-right{display:none}
+  .topbar-left{justify-content:center;width:100%}
+  .footer-grid{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
+  .posts-grid{grid-template-columns:1fr}
+  .section-head{flex-direction:column;align-items:flex-start;gap:16px}
+}
+@media (max-width:480px){
+  .wrap{padding:0 18px}
+  .filter-bar { gap: 8px; }
+  .filter-btn { padding: 8px 14px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SVG Icon Sprite ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M10 6l9-3v18l-9-3M14 9v6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7V5z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3z"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-twitter" viewBox="0 0 24 24"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.7.4-1.6.8-2.5 1a4 4 0 0 0-6.8 3.6A11 11 0 0 1 4 4.5a4 4 0 0 0 1.2 5.3c-.6 0-1.2-.2-1.8-.5v.1a4 4 0 0 0 3.2 3.9c-.6.2-1.2.2-1.8.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.1 1.8c7.3 0 11.4-6.1 11.4-11.4v-.5c.8-.6 1.4-1.3 2-2.1z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 4 2 5 2 5H4s2-1 2-5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol>
+</defs>
+</svg>
+
+<!-- ============ Top bar ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:+27115550142" class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-phone"/></svg>
+          <span>+27 11 555 0142</span>
+        </a>
+        <a href="mailto:info@choppaschool.edu" class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-mail"/></svg>
+          <span>info@choppaschool.edu</span>
+        </a>
+        <span class="topbar-item">
+          <svg class="icon icon-sm"><use href="#i-clock"/></svg>
+          <span>Mon–Fri, 07:30 – 15:30</span>
+        </span>
+      </div>
+      <div class="topbar-right">
+        <div class="social-row">
+          <a href="#" class="social-link" aria-label="Facebook"><svg class="icon icon-sm"><use href="#i-facebook"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg class="icon icon-sm"><use href="#i-instagram"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg class="icon icon-sm"><use href="#i-twitter"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg class="icon icon-sm"><use href="#i-youtube"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Header ============ -->
+<header class="header" id="header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="brand" aria-label="Choppa School home">
+        <span class="brand-mark">
+          <img src="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" alt="Choppa School crest" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Choppa School</span>
+          <span class="brand-tag">Excellence • Integrity • Service</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="announcements.html" class="nav-link active">Announcements</a></li>
+        <li><a href="achievements.html" class="nav-link">Achievements</a></li>
+        <li><a href="sports.html" class="nav-link">Sports</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About the School</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-overlay" id="navOverlay"></div>
+
+      <div class="nav-actions">
+        <a href="administration.html" class="btn btn-outline-gold btn-admin" aria-label="School Administration login">
+          <svg class="icon icon-sm"><use href="#i-shield"/></svg>
+          <span class="btn-admin-text">School Administration</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+          <svg class="icon icon-menu"><use href="#i-menu"/></svg>
+          <svg class="icon icon-close"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ Page Hero ============ -->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Choppa School Information</span>
+    <h1 class="page-title">Announcements &amp; Notices</h1>
+    <p class="page-lead">
+      Stay up to date with the latest news, important notices, and academic updates from Choppa School. Use the categories below to filter announcements.
+    </p>
+  </div>
+</section>
+
+<!-- ============ Announcements Section ============ -->
+<section class="section-announcements">
+  <div class="wrap">
+    
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Latest Announcements</button>
+      <button class="filter-btn" data-filter="Important Notices">Important Notices</button>
+      <button class="filter-btn" data-filter="Academic Notices">Academic Notices</button>
+      <button class="filter-btn" data-filter="General School Notices">General School Notices</button>
+      <button class="filter-btn" data-filter="Parent Notices">Parent Notices</button>
+      <button class="filter-btn" data-filter="Archived">Archived Announcements</button>
+    </div>
+
+    <div class="posts-grid" id="postsGrid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+      <button class="btn btn-ghost btn-lg" id="loadMoreBtn">
+        Load More Announcements
+      </button>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-mark">
+            <img src="https://raw.githubusercontent.com/websolutionsza/Choppa-high-school/refs/heads/main/Gemini_Generated_Image_ptr6l1ptr6l1ptr6.png" alt="Choppa School crest" />
+          </span>
+          <div>
+            <div class="footer-name">Choppa School</div>
+            <div class="footer-tag">Est. 1978</div>
+          </div>
+        </div>
+        <p class="footer-about">
+          A public secondary school in Riverside, Gauteng, committed to academic excellence, character formation and service to community. Proudly serving learners from Grade 8 to Grade 12.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook"><svg class="icon icon-sm"><use href="#i-facebook"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg class="icon icon-sm"><use href="#i-instagram"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg class="icon icon-sm"><use href="#i-twitter"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg class="icon icon-sm"><use href="#i-youtube"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="announcements.html">Announcements</a></li>
+          <li><a href="achievements.html">Achievements</a></li>
+          <li><a href="sports.html">Sports</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The School</h4>
+        <ul>
+          <li><a href="about.html">About the School</a></li>
+          <li><a href="about.html#vision">Vision &amp; Mission</a></li>
+          <li><a href="about.html#values">School Values</a></li>
+          <li><a href="about.html#academic">Academic Information</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-pin"/></svg>
+          <span>14 Acacia Avenue, Riverside,<br />Gauteng, 2194, South Africa</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-phone"/></svg>
+          <span>+27 11 555 0142<br />+27 11 555 0143</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg class="icon icon-sm"><use href="#i-mail"/></svg>
+          <span>info@choppaschool.edu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2025</span> Choppa School. All rights reserved.</p>
+      <a href="https://websolutionsza.github.io/websolutionsSA" target="_blank" rel="noopener noreferrer" class="dev-credit" id="devCredit">
+        Developed by <strong>WebSolutionsSA</strong>
+        <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ Back to top ============ -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg class="icon icon-md"><use href="#i-arrow-up"/></svg>
+</button>
+
+<!-- ============ Toast ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg class="icon icon-sm"><use href="#i-check"/></svg>
+  <span id="toastMsg">Notice opened.</span>
+</div>
+
+<script>
+/* ============================================================
+   CHOPPA SCHOOL — Announcements Page
+   ============================================================ */
+
+/* ---------- Supabase config placeholder ---------- */
+const SUPABASE_CONFIG = {
+  url: "https://pjofdhccpxenexkvtemt.supabase.co",
+  anonKey: "sb_publishable_E6mmFc1Pk5PfvjFxK16FYw_6VagBpED",
+};
+
+/* ---------- Prototype data layer ---------- */
+const CHOPPA_DATA = {
+  posts: [
+    {
+      id: "p1",
+      title: "Term 3 Examination Timetable Released",
+      date: "2025-08-15",
+      author: "Mrs. P. Dlamini",
+      authorRole: "Academic Head",
+      category: "Academic Notices",
+      excerpt: "The official Term 3 examination timetable for Grades 8 to 11 is now available. Please review the schedule carefully to prepare for the upcoming assessment period.",
+      image: "https://picsum.photos/seed/choppa-exam-term3/800/500.jpg",
+      hasPdf: true,
+      pdfTitle: "Term 3 Exam Timetable (PDF)"
+    },
+    {
+      id: "p2",
+      title: "School Closure Notice: Public Holiday",
+      date: "2025-08-12",
+      author: "Front Office",
+      authorRole: "Administration",
+      category: "Important Notices",
+      excerpt: "Please note that the school will be closed on Monday, 18 August 2025, in observance of the National Women's Day public holiday. Classes will resume on Tuesday.",
+      image: "https://picsum.photos/seed/choppa-closure/800/500.jpg"
+    },
+    {
+      id: "p3",
+      title: "Grade 12 Parent-Teacher Meeting",
+      date: "2025-08-08",
+      author: "Mr. T. Nkosi",
+      authorRole: "Grade 12 Coordinator",
+      category: "Parent Notices",
+      excerpt: "All Grade 12 parents are invited to attend the parent-teacher meeting on Friday, 22 August, to discuss trial examination readiness and tertiary applications.",
+      image: "https://picsum.photos/seed/choppa-parent-meeting/800/500.jpg",
+      hasAudio: true,
+      audioTitle: "Invitation from Grade 12 Coordinator",
+      audioDuration: "0:45"
+    },
+    {
+      id: "p4",
+      title: "Inter-House Athletics Day Postponed",
+      date: "2025-08-05",
+      author: "Mr. T. Nkosi",
+      authorRole: "Sports Director",
+      category: "General School Notices",
+      excerpt: "Due to anticipated heavy rainfall, the Inter-House Athletics Day has been postponed to next week Thursday. Updated fixtures will be sent home with learners.",
+      image: "https://picsum.photos/seed/choppa-sports-postpone/800/500.jpg"
+    },
+    {
+      id: "p5",
+      title: "Science Expo 2025 Registration Open",
+      date: "2025-08-01",
+      author: "Mrs. P. Dlamini",
+      authorRole: "Academic Head",
+      category: "Academic Notices",
+      excerpt: "Learners from Grade 8 to 11 can now register their projects for the annual Science Expo. The closing date for entries is 5 September 2025.",
+      image: "https://picsum.photos/seed/choppa-science-expo/800/500.jpg"
+    },
+    {
+      id: "p6",
+      title: "Updated School Uniform Policy",
+      date: "2025-07-28",
+      author: "Dr. M. Mokoena",
+      authorRole: "Principal",
+      category: "Important Notices",
+      excerpt: "The school uniform policy has been updated for the upcoming summer term. Please ensure all learners comply with the new regulations by 1 September 2025.",
+      image: "https://picsum.photos/seed/choppa-uniform/800/500.jpg",
+      hasPdf: true,
+      pdfTitle: "Uniform Policy Document (PDF)"
+    },
+    {
+      id: "p7",
+      title: "Term 2 Academic Results Distribution",
+      date: "2025-07-20",
+      author: "Mrs. P. Dlamini",
+      authorRole: "Academic Head",
+      category: "Academic Notices",
+      excerpt: "Term 2 report cards will be distributed to learners on Wednesday, 16 July. Parents are requested to sign and return the acknowledgement slip promptly.",
+      image: "https://picsum.photos/seed/choppa-reports/800/500.jpg"
+    },
+    {
+      id: "p8",
+      title: "School Bus Route Adjustment",
+      date: "2025-07-15",
+      author: "Front Office",
+      authorRole: "Administration",
+      category: "Parent Notices",
+      excerpt: "Please be advised that Bus Route 3 has been adjusted to accommodate new learners. The new route map is attached for your reference.",
+      image: "https://picsum.photos/seed/choppa-bus-route/800/500.jpg",
+      hasPdf: true,
+      pdfTitle: "Bus Route 3 Map (PDF)"
+    },
+    {
+      id: "p9",
+      title: "Heritage Day Celebration Highlights",
+      date: "2025-06-30",
+      author: "Mr. T. Nkosi",
+      authorRole: "Sports Director",
+      category: "Archived",
+      excerpt: "A look back at our wonderful Heritage Day celebrations. Thank you to all learners and staff who participated and made the event a memorable one.",
+      image: "https://picsum.photos/seed/choppa-heritage/800/500.jpg",
+      hasVideo: true
+    },
+    {
+      id: "p10",
+      title: "Winter Term Sports Wrap-up",
+      date: "2025-06-25",
+      author: "Mr. T. Nkosi",
+      authorRole: "Sports Director",
+      category: "Archived",
+      excerpt: "Our winter sports teams have concluded their seasons. Read the full wrap-up of results and highlights from the football, netball, and rugby seasons.",
+      image: "https://picsum.photos/seed/choppa-winter-sports/800/500.jpg"
+    },
+    {
+      id: "p11",
+      title: "Library Renovation Complete",
+      date: "2025-06-20",
+      author: "Front Office",
+      authorRole: "Administration",
+      category: "Archived",
+      excerpt: "The school library has officially reopened following its extensive renovation. Learners are welcome to utilize the new study areas and reading zones.",
+      image: "https://picsum.photos/seed/choppa-library/800/500.jpg"
+    },
+    {
+      id: "p12",
+      title: "Annual Prize Giving Ceremony Awards",
+      date: "2025-06-15",
+      author: "Dr. M. Mokoena",
+      authorRole: "Principal",
+      category: "Archived",
+      excerpt: "The annual prize giving ceremony was a resounding success. Congratulations to all our top achievers for the 2024 academic year.",
+      image: "https://picsum.photos/seed/choppa-prize-giving/800/500.jpg"
+    }
+  ]
+};
+
+/* ---------- Date helpers ---------- */
+function parseDate(str){ return new Date(str + "T00:00:00"); }
+function formatLongDate(str){
+  const d = parseDate(str);
+  return d.toLocaleDateString("en-ZA",{ day:"numeric", month:"long", year:"numeric" });
+}
+
+/* ---------- Renderers ---------- */
+let currentFilter = "all";
+let visibleCount = 6;
+
+function renderAnnouncements(){
+  const grid = document.getElementById("postsGrid");
+  if(!grid) return;
+  
+  let filteredPosts = CHOPPA_DATA.posts.filter(p => currentFilter === "all" || p.category === currentFilter);
+  let postsToRender = filteredPosts.slice(0, visibleCount);
+  
+  if (postsToRender.length === 0) {
+    grid.innerHTML = emptyState("No posts found", "There are no announcements in this category at the moment.");
+    document.getElementById("loadMoreWrap").style.display = "none";
+    return;
+  }
+  
+  grid.innerHTML = postsToRender.map(p => `
+    <article class="post-card reveal" data-id="${p.id}">
+      <div class="post-media">
+        <img src="${p.image}" alt="${escapeHtml(p.title)}" loading="lazy" />
+        <span class="post-cat">${p.category}</span>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-meta-item"><svg class="icon icon-sm"><use href="#i-calendar"/></svg>${formatLongDate(p.date)}</span>
+          <span class="post-meta-item"><svg class="icon icon-sm"><use href="#i-user"/></svg>${escapeHtml(p.author)}</span>
+        </div>
+        <h3 class="post-title">${escapeHtml(p.title)}</h3>
+        <p class="post-excerpt">${escapeHtml(p.excerpt)}</p>
+        ${p.hasAudio ? `
+          <div class="post-audio" role="region" aria-label="Voice note attached">
+            <button class="post-audio-btn" aria-label="Play voice note">
+              <svg class="icon icon-sm"><use href="#i-play"/></svg>
+            </button>
+            <div class="post-audio-info">
+              <strong>Voice note</strong>
+              <span>${escapeHtml(p.audioTitle || "Audio message")} · ${p.audioDuration || "0:00"}</span>
+            </div>
+          </div>` : ""}
+        <div class="post-foot">
+          <span class="post-author">By <strong>${escapeHtml(p.author)}</strong></span>
+          <a href="#" class="post-more" data-id="${p.id}">
+            Read more
+            <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+  
+  const loadMoreWrap = document.getElementById("loadMoreWrap");
+  if (filteredPosts.length > visibleCount) {
+    loadMoreWrap.style.display = "flex";
+  } else {
+    loadMoreWrap.style.display = "none";
+  }
+  
+  observeReveals();
+}
+
+/* ---------- Empty state ---------- */
+function emptyState(title, sub){
+  return `
+    <div style="grid-column:1/-1;text-align:center;padding:64px 24px;background:var(--paper);border:1px dashed var(--line);border-radius:var(--radius-lg)">
+      <div style="width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:var(--cream-warm);display:grid;place-items:center;color:var(--ink-3)">
+        <svg class="icon icon-lg"><use href="#i-bell"/></svg>
+      </div>
+      <h3 style="font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:6px">${escapeHtml(title)}</h3>
+      <p style="font-size:14px;color:var(--ink-3)">${escapeHtml(sub)}</p>
+    </div>
+  `;
+}
+
+/* ---------- Escape HTML ---------- */
+function escapeHtml(s){
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+let io;
+function observeReveals(){
+  if(!("IntersectionObserver" in window)){
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+    return;
+  }
+  if(!io){
+    io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },{ threshold:.12, rootMargin:"0px 0px -60px 0px" });
+  }
+  document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
+}
+
+/* ---------- Header scroll state ---------- */
+function initHeader(){
+  const header = document.getElementById("header");
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+    document.getElementById("toTop").classList.toggle("show", window.scrollY > 500);
+  };
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+}
+
+/* ---------- Mobile menu ---------- */
+function initMobileMenu(){
+  const btn = document.getElementById("menuToggle");
+  const links = document.getElementById("navLinks");
+  const overlay = document.getElementById("navOverlay");
+  if(!btn || !links) return;
+  
+  const toggleMenu = (open) => {
+    links.classList.toggle("open", open);
+    if(overlay) overlay.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  btn.addEventListener("click", ()=> toggleMenu(!links.classList.contains("open")));
+  
+  if(overlay) overlay.addEventListener("click", ()=> toggleMenu(false));
+
+  links.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", ()=> toggleMenu(false));
+  });
+}
+
+/* ---------- Back to top ---------- */
+function initToTop(){
+  const btn = document.getElementById("toTop");
+  if(!btn) return;
+  btn.addEventListener("click", ()=> window.scrollTo({ top:0, behavior:"smooth" }));
+}
+
+/* ---------- Interactions (Audio + Read More) ---------- */
+function initInteractions(){
+  document.addEventListener("click", (e)=>{
+    // Audio button interaction
+    const audioBtn = e.target.closest(".post-audio-btn");
+    if(audioBtn){
+      const svg = audioBtn.querySelector("use");
+      const isPlaying = audioBtn.dataset.playing === "1";
+      if(isPlaying){
+        svg.setAttribute("href","#i-play");
+        audioBtn.dataset.playing = "0";
+        showToast("Voice note paused (prototype)");
+      } else {
+        svg.setAttribute("href","#i-pause");
+        audioBtn.dataset.playing = "1";
+        showToast("Voice note playing (prototype)");
+        setTimeout(()=>{
+          svg.setAttribute("href","#i-play");
+          audioBtn.dataset.playing = "0";
+        }, 3000);
+      }
+      return;
+    }
+    
+    // Read More interaction
+    const moreBtn = e.target.closest(".post-more");
+    if(moreBtn){
+      e.preventDefault();
+      showToast("Announcement details will be available here.");
+    }
+  });
+}
+
+/* ---------- Filters ---------- */
+function initFilters(){
+  const btns = document.querySelectorAll(".filter-btn");
+  btns.forEach(btn => {
+    btn.addEventListener("click", ()=>{
+      btns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.filter;
+      visibleCount = 6;
+      renderAnnouncements();
+    });
+  });
+}
+
+/* ---------- Load More ---------- */
+function initLoadMore(){
+  const btn = document.getElementById("loadMoreBtn");
+  if(!btn) return;
+  btn.addEventListener("click", ()=>{
+    visibleCount += 6;
+    renderAnnouncements();
+  });
+}
+
+/* ---------- Toast ---------- */
+let toastTimer;
+function showToast(msg){
+  const toast = document.getElementById("toast");
+  const msgEl = document.getElementById("toastMsg");
+  if(!toast || !msgEl) return;
+  msgEl.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove("show"), 2600);
+}
+
+/* ---------- Dev credit ---------- */
+function initDevCredit(){
+  const link = document.getElementById("devCredit");
+  if(!link) return;
+  link.addEventListener("click", ()=>{
+    showToast("Opening WebSolutionsSA in a new tab");
+  });
+}
+
+/* ---------- Init ---------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderAnnouncements();
+  initHeader();
+  initMobileMenu();
+  initToTop();
+  initInteractions();
+  initFilters();
+  initLoadMore();
+  initDevCredit();
+  observeReveals();
+});
+</script>
+</body>
+</html>

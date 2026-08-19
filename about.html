@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Choppa School gallery — moments from campus life, sports, events, and academic activities." />
-<title>School Gallery — Choppa School</title>
+<meta name="description" content="About Choppa School — learn about our history, vision, mission, values, and academic information." />
+<title>About the School — Choppa School</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -205,103 +205,240 @@ body::before{
   line-height: 1.65;
 }
 
-/* ============ Gallery Section ============ */
-.section-gallery {
-  padding: 64px 0 96px;
-  position: relative;
-  background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
-}
-
-.filter-bar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-}
-.filter-btn {
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink-2);
+/* ============ Intro Section ============ */
+.section-intro {
+  padding: 84px 0;
   background: var(--paper);
-  border: 1px solid var(--line);
-  transition: all var(--transition);
-  white-space: nowrap;
+  border-bottom: 1px solid var(--line-soft);
 }
-.filter-btn:hover {
-  border-color: var(--brand);
-  color: var(--brand);
-  background: var(--brand-tint);
-}
-.filter-btn.active {
-  background: var(--brand);
-  color: #fff;
-  border-color: var(--brand);
-}
-
-.gallery-grid {
+.intro-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 220px;
-  gap: 16px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: center;
 }
-.gallery-item {
+.intro-media {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  cursor: pointer;
-  background: var(--cream-warm);
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-lg);
   border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), transform var(--transition);
 }
-.gallery-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
-}
-.gallery-item img {
+.intro-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms ease;
 }
-.gallery-item:hover img {
-  transform: scale(1.08);
+.intro-text .section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
 }
-.gallery-item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(12,59,50,.8) 100%);
-  opacity: 0;
-  transition: opacity var(--transition);
-  pointer-events: none;
+.intro-text p {
+  font-size: 16px;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+  line-height: 1.7;
 }
-.gallery-item:hover::after {
-  opacity: 1;
+.intro-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line-soft);
 }
-.gallery-cap {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  color: #fff;
-  font-size: 14px;
+.intro-stat-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--brand-deep);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.intro-stat-label {
+  font-size: 12px;
   font-weight: 500;
-  z-index: 2;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all var(--transition);
-  pointer-events: none;
-}
-.gallery-item:hover .gallery-cap {
-  opacity: 1;
-  transform: translateY(0);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
-.gallery-tall { grid-row: span 2; }
-.gallery-wide { grid-column: span 2; }
+/* ============ Vision & Mission Section ============ */
+.section-vm {
+  padding: 84px 0;
+  background: var(--cream);
+}
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.vm-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
+}
+.vm-card:hover {
+  border-color: var(--gold-soft);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.vm-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.vm-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--brand-tint);
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+}
+.vm-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+.vm-text {
+  font-size: 15.5px;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* ============ Values Section ============ */
+.section-values {
+  padding: 84px 0;
+  background: var(--paper);
+  border-top: 1px solid var(--line-soft);
+}
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.section-sub {
+  color: var(--ink-3);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.value-card {
+  padding: 32px;
+  background: var(--cream);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition);
+}
+.value-card:hover {
+  background: var(--paper);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+.value-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--gold-tint);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+.value-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.value-desc {
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+/* ============ Academic Info Section ============ */
+.section-academic {
+  padding: 84px 0;
+  background: var(--cream);
+  border-top: 1px solid var(--line-soft);
+}
+.academic-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: start;
+}
+.academic-aside {
+  position: sticky;
+  top: 100px;
+}
+.academic-main h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  margin-top: 32px;
+}
+.academic-main h3:first-child { margin-top: 0; }
+.academic-main p {
+  font-size: 15.5px;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.academic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.academic-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--ink-2);
+  background: var(--paper);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+}
+.academic-list .icon {
+  color: var(--brand);
+  flex-shrink: 0;
+}
 
 /* ============ Footer ============ */
 .footer{background:#0a2a23;color:rgba(255,253,247,.75);padding:64px 0 0;margin-top:0;position:relative}
@@ -363,7 +500,11 @@ body::before{
 /* ============ Responsive ============ */
 @media (max-width:1024px){
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
-  .gallery-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:180px}
+  .intro-grid{grid-template-columns:1fr;gap:48px}
+  .intro-media{max-width:500px;margin:0 auto}
+  .academic-layout{grid-template-columns:1fr;gap:40px}
+  .academic-aside{position:static}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:768px){
   .section{padding:60px 0}
@@ -386,16 +527,13 @@ body::before{
   .topbar-right{display:none}
   .topbar-left{justify-content:center;width:100%}
   .footer-grid{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}
-  .gallery-wide{grid-column:span 2}
-  .gallery-tall{grid-row:span 1} /* Prevent excessive height on mobile */
+  .vm-grid{grid-template-columns:1fr}
+  .vm-card{padding:32px}
+  .values-grid{grid-template-columns:1fr}
 }
 @media (max-width:480px){
   .wrap{padding:0 18px}
-  .filter-bar { gap: 8px; }
-  .filter-btn { padding: 8px 14px; font-size: 12px; }
-  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:200px}
-  .gallery-wide, .gallery-tall { grid-row: auto; grid-column: auto; }
+  .intro-stats{gap:24px;flex-wrap:wrap}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -420,12 +558,16 @@ body::before{
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 21V4h12l-2 4 2 4H4"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 11-7 11z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z"/><path d="M18 17H6"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="8" r="3"/><path d="M22 21c0-3-2-5.5-5-6.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></symbol>
 <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3z"/></symbol>
 <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></symbol>
 <symbol id="i-twitter" viewBox="0 0 24 24"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.7.4-1.6.8-2.5 1a4 4 0 0 0-6.8 3.6A11 11 0 0 1 4 4.5a4 4 0 0 0 1.2 5.3c-.6 0-1.2-.2-1.8-.5v.1a4 4 0 0 0 3.2 3.9c-.6.2-1.2.2-1.8.1a4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.1 1.8c7.3 0 11.4-6.1 11.4-11.4v-.5c.8-.6 1.4-1.3 2-2.1z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/></symbol>
-<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></symbol>
-<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5L5 19"/></symbol>
 </defs>
 </svg>
 
@@ -479,8 +621,8 @@ body::before{
         <li><a href="achievements.html" class="nav-link">Achievements</a></li>
         <li><a href="sports.html" class="nav-link">Sports</a></li>
         <li><a href="events.html" class="nav-link">Events</a></li>
-        <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
-        <li><a href="about.html" class="nav-link">About the School</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link active">About the School</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-overlay" id="navOverlay"></div>
@@ -504,32 +646,171 @@ body::before{
 <!-- ============ Page Hero ============ -->
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">Choppa School Gallery</span>
-    <h1 class="page-title">Moments from Campus Life</h1>
+    <span class="eyebrow">Established 1978</span>
+    <h1 class="page-title">About Choppa School</h1>
     <p class="page-lead">
-      A glimpse into daily life at Choppa — in the classroom, on the field, and on stage. Browse our collection of photos from recent school events and activities.
+      Located in the heart of Riverside, Gauteng, Choppa School has been a pillar of academic excellence and community development for over four decades. We are dedicated to nurturing the potential of every learner.
     </p>
   </div>
 </section>
 
-<!-- ============ Gallery Section ============ -->
-<section class="section-gallery">
+<!-- ============ Intro Section ============ -->
+<section class="section-intro" id="intro">
   <div class="wrap">
-    
-    <div class="filter-bar reveal">
-      <button class="filter-btn active" data-filter="all">All Photos</button>
-      <button class="filter-btn" data-filter="School Life">School Life</button>
-      <button class="filter-btn" data-filter="Classrooms">Classrooms</button>
-      <button class="filter-btn" data-filter="Sports">Sports</button>
-      <button class="filter-btn" data-filter="Events">Events</button>
-      <button class="filter-btn" data-filter="Achievements">Achievements</button>
-      <button class="filter-btn" data-filter="School Grounds">School Grounds</button>
+    <div class="intro-grid">
+      <div class="intro-media reveal">
+        <img src="https://picsum.photos/seed/choppa-about-building/800/1000.jpg" alt="Choppa School campus building" />
+      </div>
+      <div class="intro-text reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="section-title">A tradition of learning, leadership, and belonging.</h2>
+        <p>
+          Founded in 1978, Choppa School began as a small community initiative with just 120 learners. Today, we are proud to educate over 1,240 learners from Grade 8 to Grade 12, offering a diverse curriculum that balances rigorous academics with vibrant sports and cultural programs.
+        </p>
+        <p>
+          Our experienced educators are committed to creating a supportive environment where students are challenged to think critically, act responsibly, and contribute meaningfully to society. We believe that every child has the right to a high-quality education, and we work tirelessly to ensure our learners are equipped for the challenges of tomorrow.
+        </p>
+        <div class="intro-stats">
+          <div>
+            <div class="intro-stat-num">1,240+</div>
+            <div class="intro-stat-label">Learners</div>
+          </div>
+          <div>
+            <div class="intro-stat-num">78</div>
+            <div class="intro-stat-label">Educators</div>
+          </div>
+          <div>
+            <div class="intro-stat-num">47</div>
+            <div class="intro-stat-label">Years of Service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Vision & Mission Section ============ -->
+<section class="section-vm" id="vision">
+  <div class="wrap">
+    <div class="vm-grid">
+      <article class="vm-card reveal">
+        <div class="vm-icon">
+          <svg class="icon icon-lg"><use href="#i-target"/></svg>
+        </div>
+        <h3 class="vm-title">Our Vision</h3>
+        <p class="vm-text">
+          To be a leading institution of academic excellence, empowering learners to become innovative, compassionate, and responsible citizens who are prepared to make a meaningful impact in an ever-changing global society.
+        </p>
+      </article>
+      <article class="vm-card reveal" id="mission">
+        <div class="vm-icon">
+          <svg class="icon icon-lg"><use href="#i-flag"/></svg>
+        </div>
+        <h3 class="vm-title">Our Mission</h3>
+        <p class="vm-text">
+          Choppa School is committed to providing a holistic, high-quality education that nurtures the intellectual, physical, and emotional growth of every learner. We strive to create an inclusive environment that fosters critical thinking, creativity, and a lifelong love for learning.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Values Section ============ -->
+<section class="section-values" id="values">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="justify-content:center">What We Stand For</span>
+      <h2 class="section-title">School Values</h2>
+      <p class="section-sub">Our core values guide our daily interactions, shape our culture, and define the character we instill in our learners.</p>
     </div>
 
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Rendered by JS -->
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-book"/></svg></div>
+        <h4 class="value-title">Excellence</h4>
+        <p class="value-desc">We pursue the highest standards in teaching, learning, and personal conduct, encouraging every learner to achieve their personal best.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-shield"/></svg></div>
+        <h4 class="value-title">Integrity</h4>
+        <p class="value-desc">We act with honesty, fairness, and respect, taking responsibility for our actions and fostering a culture of trust.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-heart"/></svg></div>
+        <h4 class="value-title">Compassion</h4>
+        <p class="value-desc">We treat others with empathy and kindness, celebrating diversity and supporting one another as a unified school community.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-users"/></svg></div>
+        <h4 class="value-title">Service</h4>
+        <p class="value-desc">We actively contribute to our community, understanding that true leadership involves serving others and making a positive difference.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-target"/></svg></div>
+        <h4 class="value-title">Innovation</h4>
+        <p class="value-desc">We embrace creative thinking and modern methodologies, preparing our learners to navigate and shape the future.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><svg class="icon icon-md"><use href="#i-flag"/></svg></div>
+        <h4 class="value-title">Discipline</h4>
+        <p class="value-desc">We maintain a structured and safe environment where self-discipline and respect for rules are fundamental to personal growth.</p>
+      </div>
     </div>
+  </div>
+</section>
 
+<!-- ============ Academic Info Section ============ -->
+<section class="section-academic" id="academic">
+  <div class="wrap">
+    <div class="academic-layout">
+      <div class="academic-aside reveal">
+        <span class="eyebrow">Academic Information</span>
+        <h2 class="section-title">Curriculum & Extracurriculars</h2>
+        <p style="color:var(--ink-3);font-size:15px;margin-bottom:24px;">
+          We offer a comprehensive curriculum aligned with the South African National Senior Certificate (NSC), supplemented by a wide range of activities to ensure holistic development.
+        </p>
+        <a href="contact.html" class="btn btn-primary">
+          Enquire about Admissions
+          <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+      
+      <div class="academic-main reveal">
+        <h3>Senior Phase (Grades 8 & 9)</h3>
+        <p>
+          In the Senior Phase, learners build a strong foundation across essential learning areas, preparing them for the Further Education and Training phase. Our focus is on developing critical thinking and collaborative problem-solving skills.
+        </p>
+        <ul class="academic-list">
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> English Home Language</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Mathematics & Natural Sciences</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Social Sciences & Technology</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Economic & Management Sciences</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Life Orientation & Creative Arts</li>
+        </ul>
+
+        <h3>FET Phase (Grades 10 to 12)</h3>
+        <p>
+          In the FET phase, learners specialize in subjects that align with their career aspirations. Our dedicated educators provide rigorous preparation for the final NSC examinations, ensuring our learners are well-prepared for tertiary education.
+        </p>
+        <ul class="academic-list">
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Physical Sciences & Life Sciences</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Accounting & Business Studies</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Geography & History</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Computer Applications Technology (CAT)</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Visual Arts & Dramatic Arts</li>
+        </ul>
+
+        <h3>Extracurricular Activities</h3>
+        <p>
+          Education extends beyond the classroom. We offer a diverse range of sports and cultural activities designed to develop teamwork, leadership, and personal wellness. Every learner is encouraged to participate in at least one sport and one cultural activity per year.
+        </p>
+        <ul class="academic-list">
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Sports: Football, Basketball, Netball, Rugby, Athletics</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Arts: Marimba Band, Choir, Drama, Visual Arts</li>
+          <li><svg class="icon icon-sm"><use href="#i-check"/></svg> Clubs: Debate, Science Expo, Chess, Eco-Club</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -618,12 +899,12 @@ body::before{
 <!-- ============ Toast ============ -->
 <div class="toast" id="toast" role="status" aria-live="polite">
   <svg class="icon icon-sm"><use href="#i-check"/></svg>
-  <span id="toastMsg">Image preview opened.</span>
+  <span id="toastMsg">Admissions enquiry opened.</span>
 </div>
 
 <script>
 /* ============================================================
-   CHOPPA SCHOOL — Gallery Page
+   CHOPPA SCHOOL — About Page
    ============================================================ */
 
 /* ---------- Supabase config placeholder ---------- */
@@ -631,140 +912,6 @@ const SUPABASE_CONFIG = {
   url: "https://pjofdhccpxenexkvtemt.supabase.co",
   anonKey: "sb_publishable_E6mmFc1Pk5PfvjFxK16FYw_6VagBpED",
 };
-
-/* ---------- Prototype data layer ---------- */
-const CHOPPA_DATA = {
-  gallery: [
-    {
-      id: "g1",
-      src: "https://picsum.photos/seed/choppa-g-assembly/800/600.jpg",
-      caption: "Morning assembly in the quadrangle",
-      category: "School Life",
-      span: "tall"
-    },
-    {
-      id: "g2",
-      src: "https://picsum.photos/seed/choppa-g-classroom/800/600.jpg",
-      caption: "Grade 10 Physical Sciences lesson",
-      category: "Classrooms",
-      span: "normal"
-    },
-    {
-      id: "g3",
-      src: "https://picsum.photos/seed/choppa-g-prizegiving/800/600.jpg",
-      caption: "Annual prize giving ceremony",
-      category: "Events",
-      span: "wide"
-    },
-    {
-      id: "g4",
-      src: "https://picsum.photos/seed/choppa-g-football/800/600.jpg",
-      caption: "Inter-house football tournament",
-      category: "Sports",
-      span: "normal"
-    },
-    {
-      id: "g5",
-      src: "https://picsum.photos/seed/choppa-g-library/800/600.jpg",
-      caption: "Study session in the school library",
-      category: "School Life",
-      span: "normal"
-    },
-    {
-      id: "g6",
-      src: "https://picsum.photos/seed/choppa-g-science/800/600.jpg",
-      caption: "Science laboratory practical",
-      category: "Classrooms",
-      span: "normal"
-    },
-    {
-      id: "g7",
-      src: "https://picsum.photos/seed/choppa-g-music/800/600.jpg",
-      caption: "Marimba band rehearsal",
-      category: "Events",
-      span: "wide"
-    },
-    {
-      id: "g8",
-      src: "https://picsum.photos/seed/choppa-g-art/800/600.jpg",
-      caption: "Visual arts exhibition, Term 1",
-      category: "Achievements",
-      span: "tall"
-    },
-    {
-      id: "g9",
-      src: "https://picsum.photos/seed/choppa-g-athletics/800/600.jpg",
-      caption: "District Athletics Championship",
-      category: "Sports",
-      span: "normal"
-    },
-    {
-      id: "g10",
-      src: "https://picsum.photos/seed/choppa-g-grounds/800/600.jpg",
-      caption: "Aerial view of the school grounds",
-      category: "School Grounds",
-      span: "wide"
-    },
-    {
-      id: "g11",
-      src: "https://picsum.photos/seed/choppa-g-debate/800/600.jpg",
-      caption: "Inter-school debating championship",
-      category: "Achievements",
-      span: "normal"
-    },
-    {
-      id: "g12",
-      src: "https://picsum.photos/seed/choppa-g-netball/800/600.jpg",
-      caption: "Netball U19 team in action",
-      category: "Sports",
-      span: "normal"
-    }
-  ]
-};
-
-/* ---------- Renderers ---------- */
-let currentFilter = "all";
-
-function renderGallery(){
-  const grid = document.getElementById("galleryGrid");
-  if(!grid) return;
-  
-  let filteredGallery = CHOPPA_DATA.gallery.filter(g => currentFilter === "all" || g.category === currentFilter);
-  
-  if (filteredGallery.length === 0) {
-    grid.innerHTML = emptyState("No photos found", "There are no photos in this category at the moment.");
-    return;
-  }
-  
-  grid.innerHTML = filteredGallery.map(g => `
-    <figure class="gallery-item reveal ${g.span === 'tall' ? 'gallery-tall' : ''} ${g.span === 'wide' ? 'gallery-wide' : ''}" data-id="${g.id}">
-      <img src="${g.src}" alt="${escapeHtml(g.caption)}" loading="lazy" />
-      <figcaption class="gallery-cap">${escapeHtml(g.caption)}</figcaption>
-    </figure>
-  `).join("");
-  
-  observeReveals();
-}
-
-/* ---------- Empty state ---------- */
-function emptyState(title, sub){
-  return `
-    <div style="grid-column:1/-1;text-align:center;padding:64px 24px;background:var(--paper);border:1px dashed var(--line);border-radius:var(--radius-lg)">
-      <div style="width:56px;height:56px;margin:0 auto 16px;border-radius:50%;background:var(--cream-warm);display:grid;place-items:center;color:var(--ink-3)">
-        <svg class="icon icon-lg"><use href="#i-image"/></svg>
-      </div>
-      <h3 style="font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:6px">${escapeHtml(title)}</h3>
-      <p style="font-size:14px;color:var(--ink-3)">${escapeHtml(sub)}</p>
-    </div>
-  `;
-}
-
-/* ---------- Escape HTML ---------- */
-function escapeHtml(s){
-  return String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[c]);
-}
 
 /* ---------- Reveal-on-scroll ---------- */
 let io;
@@ -827,30 +974,6 @@ function initToTop(){
   btn.addEventListener("click", ()=> window.scrollTo({ top:0, behavior:"smooth" }));
 }
 
-/* ---------- Interactions ---------- */
-function initInteractions(){
-  document.addEventListener("click", (e)=>{
-    const item = e.target.closest(".gallery-item");
-    if(item){
-      e.preventDefault();
-      showToast("Image lightbox preview will open here.");
-    }
-  });
-}
-
-/* ---------- Filters ---------- */
-function initFilters(){
-  const btns = document.querySelectorAll(".filter-btn");
-  btns.forEach(btn => {
-    btn.addEventListener("click", ()=>{
-      btns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      currentFilter = btn.dataset.filter;
-      renderGallery();
-    });
-  });
-}
-
 /* ---------- Toast ---------- */
 let toastTimer;
 function showToast(msg){
@@ -875,12 +998,9 @@ function initDevCredit(){
 /* ---------- Init ---------- */
 document.addEventListener("DOMContentLoaded", ()=>{
   document.getElementById("year").textContent = new Date().getFullYear();
-  renderGallery();
   initHeader();
   initMobileMenu();
   initToTop();
-  initInteractions();
-  initFilters();
   initDevCredit();
   observeReveals();
 });
